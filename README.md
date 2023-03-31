@@ -88,10 +88,12 @@ int post(const char* host, int port, char* path, char* content_type, char* reque
 // Отправить тестовый POST запрос, и вывести на экран
 int debug_post(const char* host);
 ```
+
+``` C
 const char* host = "google.com";
 int port = 80;
 
-const char* path = "/api";
+char* path = "/api";
 char* content_type = "";
 char* request_body = "test";
 
@@ -99,12 +101,6 @@ char responce[BUFFER_SIZE];
 
 post(host, port, content_type, request_body, request_body, responce);
 printf("%s", responce);
-``` C
-char responce[MAXBUFLEN];
-if (https_get("google.com", "443", "/", responce) != EOF)
-{
-    printf("%s\n",responce);
-}
 ```
 
 ## CODE
@@ -112,3 +108,13 @@ if (https_get("google.com", "443", "/", responce) != EOF)
 // Вернуть код ответа сайта
 int get_responce_code(const char* host, int port, const char* path);
 ```
+
+``` C
+int code = get_responce_code("google.com", 80, "/");
+
+if (code != EOF)
+{
+    printf("Responce code is: %d", code);
+} 
+```
+
