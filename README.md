@@ -117,3 +117,9 @@ if (code != EOF)
 } 
 ```
 
+## Компиляция
+```
+gcc -c <filename> -lssl -lcrypto
+gcc -o <program_name> <filename.o> -lssl -lcrypto
+```
+
