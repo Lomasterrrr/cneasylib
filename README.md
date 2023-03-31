@@ -111,7 +111,6 @@ int get_responce_code(const char* host, int port, const char* path);
 
 ``` C
 int code = get_responce_code("google.com", 80, "/");
-
 if (code != EOF)
 {
     printf("Responce code is: %d", code);
