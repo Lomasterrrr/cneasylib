@@ -25,6 +25,33 @@ int debug_print_ip_addresses(char **ips, int time);
 void free_ips(char **ips);
 ```
 
+``` C
+const char* ip_temp = get_ip_address("google.com", "80", 0);
+
+if (ip_temp != NULL)
+{
+    printf("IP is: %s\n", ip_temp);
+}
+```
+
+``` C
+char **ips = get_ip_addresses("google.com", "80", 0);
+char **temp;
+
+if (ips == NULL)
+{
+    fprintf(stderr, "error: getting IP addresses");
+}
+
+for (temp = ips; *temp != NULL; temp++)
+{
+    printf("%s\n", *temp);
+} 
+
+free_ips(ips);
+```
+
+
 ## GET (HTTP, HTTPS)
 ``` C
 // Отправить HTTP/GET запрос и записать ответ в переменную
@@ -37,6 +64,22 @@ int https_get(const char *host, const char *port, const char *path, char *respon
 double get_get_response_time(const char* host, int http_or_https);
 ```
 
+``` C
+char responce[MAXBUFLEN];
+if (http_get("google.com", "80", "/", responce) != EOF)
+{
+    printf("%s\n",responce);
+}
+```
+
+``` C
+char responce[MAXBUFLEN];
+if (https_get("google.com", "443", "/", responce) != EOF)
+{
+    printf("%s\n",responce);
+}
+```
+
 ## POST
 ``` C
 // Отправить POST запрос, и записать ответ в переменную
@@ -44,6 +87,24 @@ int post(const char* host, int port, char* path, char* content_type, char* reque
 
 // Отправить тестовый POST запрос, и вывести на экран
 int debug_post(const char* host);
+```
+const char* host = "google.com";
+int port = 80;
+
+const char* path = "/api";
+char* content_type = "";
+char* request_body = "test";
+
+char responce[BUFFER_SIZE];
+
+post(host, port, content_type, request_body, request_body, responce);
+printf("%s", responce);
+``` C
+char responce[MAXBUFLEN];
+if (https_get("google.com", "443", "/", responce) != EOF)
+{
+    printf("%s\n",responce);
+}
 ```
 
 ## CODE
